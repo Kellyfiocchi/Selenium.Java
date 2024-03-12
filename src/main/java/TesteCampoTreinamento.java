@@ -2,6 +2,7 @@
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -132,4 +133,32 @@ public class TesteCampoTreinamento {
 		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 		driver.close();
 		}
+	
+	@Test
+	//@Ignore
+	public void deveInteragirComLinks() {
+		System.setProperty("webdriver.chrome.driver",
+				"/Users/Kelly/OneDrive/Área de Trabalho/DriverAt/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().setSize(new Dimension(1200, 765));
+		driver.get("http://wcaquino.me/selenium/componentes.html");
+		driver.findElement(By.linkText("Voltar")).click();
+		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
+		//Assert.fail();
+		 driver.close();
+	}
+	
+	@Test
+	public void deveBuscarTextosNaPagina() {
+        System.setProperty("webdriver.chrome.driver",
+                "/Users/Kelly/OneDrive/Área de Trabalho/DriverAt/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().setSize(new Dimension(1200, 765));
+        driver.get("http://wcaquino.me/selenium/componentes.html");
+        //Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
+        Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
+        Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
+        //driver.close();
+	   }
+		
 	}
